@@ -1,15 +1,18 @@
 import { React, useState, useEffect } from "react";
 import { GoogleLogin } from "react-google-login";
 import { refreshTokenSetup } from "../utils/refreshToken";
+import { useNavigate } from 'react-router-dom';
+import { useAuth } from './UseAuth';
 
-const clientId =
-  "223152336662-ggl8sh19jb01koh6v4ekv28qefg2lg6b.apps.googleusercontent.com";
+const clientId = "223152336662-ggl8sh19jb01koh6v4ekv28qefg2lg6b.apps.googleusercontent.com";
 
 const Login = () => {
-  const [userAuth, setUserAuth] = useState("");
+  const [userInfo, setUserInfo] = useState("");
+  const navigate = useNavigate();
+  const { login } = useAuth();
+
   const onSuccess = async (res) => {
     // console.log("[login success] res:", res.profileObj);
-    // console.log(res.tokenId);
     const token = res.tokenId;
     refreshTokenSetup(res);
     const data = await fetch("http://localhost:3001/login", {
@@ -23,16 +26,20 @@ const Login = () => {
       }),
     });
     const returnedData = await data.json();
-    setUserAuth(returnedData);
+    // console.log(returnedData);
+    setUserInfo({ returnedData, loggedIn: true });
+    login().then(() => {
+      navigate("/dashboard");
+    });
   };
 
   const setLocalStorage = () => {
-    localStorage.setItem("data", JSON.stringify(userAuth));
+    localStorage.setItem("data", JSON.stringify(userInfo));
   };
 
   useEffect(() => {
     setLocalStorage();
-  }, [userAuth]);
+  }, [userInfo]);
 
   const onFailure = (res) => {
     console.log("[login failed] res:", res);
@@ -45,8 +52,6 @@ const Login = () => {
         buttonText="Login"
         onSuccess={onSuccess}
         onFailure={onFailure}
-        uxMode="redirect"
-        redirectUri="http://localhost:3000/dashboard"
         cookiePolicy={"single_host_origin"}
         isSignedIn={true}
       />

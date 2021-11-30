@@ -2,37 +2,40 @@ import { React, useEffect, useState } from "react";
 import Logout from "./Logout";
 
 const Dashboard = () => {
-  const [userAuth, setUserAuth] = useState([]);
   const [laptops, setLaptops] = useState([]);
-
-  const getLocalStorage = () => {
-    const data = JSON.parse(localStorage.getItem("data"));
-    setUserAuth(data);
-    console.log("data", data)
-    console.log("userAuth1", userAuth);
-  };
+  
+  const [userAuth, setUserAuth] = useState(() => {
+    const localRef = localStorage.getItem("data")
+    const data = JSON.parse(localRef);
+    return data || "";
+  });
 
   const allLaptops = async () => {
-    console.log("userAuth3", userAuth);
+    const bearer = 'Bearer ' + userAuth.returnedData.accessToken;
+    // console.log(bearer)
     const response = await fetch("http://localhost:3001/dashboard", {
       method: "GET",
       headers: {
-        authorization: `Bearer ${userAuth.accessToken}`,
+        Authorization: bearer,
       },
     });
     const parsedResponse = await response.json();
+    // console.log(parsedResponse)
     setLaptops(parsedResponse);
   };
 
   useEffect(() => {
-    getLocalStorage();
-    console.log("userAuth2", userAuth)
     allLaptops();
   }, []);
 
   return (
     <div>
-      <div> {laptops.devLaptop}</div>
+      <h1> hello world </h1>
+      <div> {
+        laptops.map((computer) => {
+          return <p key={computer.SerialNO} > {computer.ComputerID} : {computer.users[0]} </p>
+        })
+      }</div>
       <Logout />
     </div>
   );

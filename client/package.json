@@ -40,6 +40,9 @@
     ]
   },
   "react-dotenv": {
-    "whitelist": ["CLIENT_SECRET", "CLIENT_ID"]
+    "whitelist": [
+      "CLIENT_SECRET",
+      "CLIENT_ID"
+    ]
   }
 }
