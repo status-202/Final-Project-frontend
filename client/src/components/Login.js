@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import { React, useState, useEffect } from "react";
 import { GoogleLogin } from "react-google-login";
 import { refreshTokenSetup } from "../utils/refreshToken";
@@ -53,6 +54,7 @@ const Login = () => {
         onSuccess={onSuccess}
         onFailure={onFailure}
         cookiePolicy={"single_host_origin"}
+        // hostedDomain="appliedtechnology.se"
         isSignedIn={true}
       />
     </div>

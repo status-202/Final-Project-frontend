@@ -1,6 +1,6 @@
 import * as React from "react";
 
-const authContext = React.createContext();
+// const authContext = React.createContext();
 
 export function useAuth() {
   const [authed, setAuthed] = React.useState(false);

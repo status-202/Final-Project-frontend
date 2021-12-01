@@ -5,7 +5,7 @@ import { useState } from "react";
 import Login from "./Login";
 
 export default function RequireAuth({ children }) {
-  const [userAuth, setUserAuth] = useState(() => {
+  const [userAuth] = useState(() => {
     const localRef = localStorage.getItem("data")
     const data = JSON.parse(localRef);
     return data || "";
