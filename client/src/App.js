@@ -1,6 +1,7 @@
 import "./App.css";
 import Login from "./components/Login";
 import Dashboard from "./components/Dashboard";
+import DevComputer from "./components/DevComputer";
 import * as React from "react";
 import { Link, BrowserRouter, Routes, Route } from "react-router-dom";
 import RequireAuth from "./components/RequireAuth";
@@ -27,6 +28,13 @@ function App() {
                 <Dashboard />
               </RequireAuth>
             }></Route>
+
+            <Route exact path="/dashboard/:id" element={
+              <RequireAuth> 
+                <DevComputer />
+              </RequireAuth>
+            }></Route>
+
         </Routes>
       </BrowserRouter>
     </div>
