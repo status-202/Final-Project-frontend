@@ -44,19 +44,21 @@ const DevComputerInfo = ({ laptop, renderDevComputer }) => {
   };
 
   return (
-    <div>
+    <div className='devComputerCard'>
       <h2>{currentComputer.computerID}</h2>
       <p> Serial#: {currentComputer.serialNO}</p>
       <p> Current User: {currentComputer.users[0]}</p>
       <p> Current Status: {currentComputer.status}</p>
-      <p><a href={`${currentComputer.licenseLink}`} target="blank"> Link </a></p>
+      <p><a className="devComputerCard__link" href={`${currentComputer.licenseLink}`} target="blank"> Link </a></p>
       <p> Days since Handout: {currentComputer.handoutDate}</p>
-      <button onClick={handleDelete}> Delete </button>
-      <button onClick={handleEdit}> Edit </button>
+      <div className="devComputerCart">
+      <button className="devComputerCard__delete-button" onClick={handleDelete}> Delete </button>
+      <button className="devComputerCard__edit-button"onClick={handleEdit}> Edit </button>
+      </div>
       {showForm && <FormUpdateDevComputer callback={renderUpdate} currentComputer={currentComputer}/>}
-      <h2> User History </h2>
+      <h3> User History </h3>
       <p>...</p>
-      <h2> Device History </h2>
+      <h3> Device History </h3>
       <p>...</p>
     </div>
   );

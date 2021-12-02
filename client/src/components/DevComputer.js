@@ -2,6 +2,7 @@
 import { React, useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import DevComputerInfo from "./DevComputerInfo";
+import '../css/devComputer.css';
 
 const DevComputer = () => {
   let params = useParams();
