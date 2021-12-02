@@ -67,7 +67,7 @@ const FormDevComputer = ({ callback }) => {
         <option value="Unknown"> Unknown </option>
       </select>
       <input type="text" name="users" value={newComputer.users || ""} placeholder="User" onChange={(e) => handleChange(e)}></input>
-      <input type="text" name="handoutDate" value={newComputer.handoutDate || ""} placeholder="Handout Date" onChange={(e) => handleChange(e)}></input>
+      <input type="date" name="handoutDate" value={newComputer.handoutDate || ""} placeholder="Handout Date" onChange={(e) => handleChange(e)}></input>
       <input type="submit" />
     </form>
   )
