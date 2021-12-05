@@ -1,14 +1,15 @@
 import { React, useState } from "react";
+import '../css/formUpdateDevComputer.css';
 
 const FormUpdateDevComputer = ({ callback, currentComputer }) => {
   const [user, setUser] = useState("");
 
   const [updatedComputer, setUpdatedComputer] = useState({
     computerID: currentComputer.computerID,
-    serialNO: "",
-    informationLink: "",
+    serialNO: currentComputer.serialNO,
+    informationLink: currentComputer.informationLink,
     status: "Ready to be handed out",
-    handoutDate: "",
+    handoutDate: currentComputer.handoutDate,
   });
 
   const [userAuth] = useState(() => {
@@ -44,73 +45,85 @@ const FormUpdateDevComputer = ({ callback, currentComputer }) => {
       body: JSON.stringify({ computer, users }),
     });
     const parsedResponse = await response.json();
-    console.log(parsedResponse);
+    // console.log(parsedResponse);
     if (parsedResponse) {
-      console.log('form' ,parsedResponse);
+      console.log('form response', parsedResponse);
       callback(parsedResponse);
     }
   };
 
   return (
-    <form onSubmit={(e) => handleSubmit(e)}>
-      <h2>{currentComputer.computerID}</h2>
-      {/* add divs around each label and input tags */}
-      <div>
-        <label> Serial Number </label>
-        <input
-          type="text"
-          name="serialNO"
-          defaultValue={currentComputer.serialNO || updatedComputer.serialNO}
-          placeholder="Serial NO"
-          onChange={(e) => handleComputerChange(e)}
-          required
-        ></input>
-      </div>
-      <label> Information Link </label>
-      <input
-        type="text"
-        name="informationLink"
-        defaultValue={
-          currentComputer.informationLink || updatedComputer.informationLink
-        }
-        placeholder="Information Link"
-        onChange={(e) => handleComputerChange(e)}
-        required
-      ></input>
-      <label> Status </label>
-      <select
-        name="status"
-        defaultValue={currentComputer.status || updatedComputer.status}
-        onChange={(e) => handleComputerChange(e)}
-      >
-        <option value="Handed out"> Handed out </option>
-        <option value="Returned"> Returned </option>
-        <option value="Broken"> Broken </option>
-        <option value="Being Repaired"> Being Repaired </option>
-        <option value="Stolen or Lost"> Stolen or Lost </option>
-        <option value="Ready to be handed out"> Ready to be handed out </option>
-        <option value="Unknown"> Unknown </option>
-      </select>
-      <label> Users </label>
-      <input
-        type="text"
-        name="users"
-        defaultValue={currentComputer.users[0] || user}
-        placeholder="User"
-        onChange={(e) => handleUserChange(e)}
-      ></input>
-      <label> Handed Out </label>
-      <input
-        type="date"
-        name="handoutDate"
-        defaultValue={
-          currentComputer.handoutDate || updatedComputer.handoutDate
-        }
-        placeholder="Handout Date"
-        onChange={(e) => handleComputerChange(e)}
-      ></input>
-      <input type="submit" />
-    </form>
+    <div className="updateFormContainer">
+      <form onSubmit={(e) => handleSubmit(e)}>
+        <h2>{currentComputer.computerID} (editing) </h2>
+        {/* add divs around each label and input tags */}
+        <div>
+          <label> Serial Number </label>
+          <input
+            type="text"
+            name="serialNO"
+            defaultValue={currentComputer.serialNO || updatedComputer.serialNO}
+            placeholder="Serial NO"
+            onChange={(e) => handleComputerChange(e)}
+            required
+          ></input>
+        </div>
+        <div>
+          <label> Information Link </label>
+          <input
+            type="text"
+            name="informationLink"
+            defaultValue={
+              currentComputer.informationLink || updatedComputer.informationLink
+            }
+            placeholder="Information Link"
+            onChange={(e) => handleComputerChange(e)}
+            required
+          ></input>
+        </div>
+        <div>
+          <label> Status </label>
+          <select
+            name="status"
+            defaultValue={currentComputer.status || updatedComputer.status}
+            onChange={(e) => handleComputerChange(e)}
+          >
+            <option value="Handed out"> Handed out </option>
+            <option value="Returned"> Returned </option>
+            <option value="Broken"> Broken </option>
+            <option value="Being Repaired"> Being Repaired </option>
+            <option value="Stolen or Lost"> Stolen or Lost </option>
+            <option value="Ready to be handed out"> Ready to be handed out </option>
+            <option value="Unknown"> Unknown </option>
+          </select>
+        </div>
+        <div>
+          <label> Users </label>
+          <input
+            type="text"
+            name="users"
+            defaultValue={currentComputer.users[0] || user}
+            placeholder="User"
+            onChange={(e) => handleUserChange(e)}
+          ></input>
+        </div>
+        <div>
+          <label> Handed Out </label>
+          <input
+            type="date"
+            name="handoutDate"
+            defaultValue={
+              (currentComputer.handoutDate !== undefined && currentComputer.handoutDate !== null ? currentComputer.handoutDate.split('T')[0] : "") || updatedComputer.handoutDate
+            }
+            placeholder="Handout Date"
+            onChange={(e) => handleComputerChange(e)}
+          ></input>
+        </div>
+        <div>
+          <input className="update-button" type="submit" value="Update" />
+        </div>
+      </form>
+    </div>
   );
 };
 

@@ -1,4 +1,4 @@
-import React from "react";
+import { React } from "react";
 import { GoogleLogout } from "react-google-login";
 import { useNavigate } from 'react-router-dom';
 import { useAuth } from './UseAuth';
@@ -6,16 +6,18 @@ import { useAuth } from './UseAuth';
 const clientId =
   "223152336662-ggl8sh19jb01koh6v4ekv28qefg2lg6b.apps.googleusercontent.com";
 
-const Logout = () => {
+const Logout = ( { setLoggedIn } ) => {
   const navigate = useNavigate();
   const { logout } = useAuth();
 
   const onSuccess = () => {
     console.log("Logout made successfully");
+    setLoggedIn(false);
     logout().then(() => {
-      navigate("/login");
+      navigate("/");
     });
   };
+
   return (
     <div>
       <GoogleLogout

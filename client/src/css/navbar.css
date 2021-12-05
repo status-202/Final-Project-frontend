@@ -2,10 +2,23 @@
   font-size: 1em;
   display: flex;
   justify-content: space-between;
-  padding: 0.5em;
+  padding: 1.5em;
   position: sticky;
   top: 0;
   background-color: white;
   border-bottom: 1px solid black;
-  width: 100%;
+  width: 97vw;
+}
+
+.navbar a {
+  text-decoration: none;
+  color: black;
+}
+
+.navbar__right {
+ display: flex;
+}
+
+.navbar__right div {
+  margin: .4em;
 }

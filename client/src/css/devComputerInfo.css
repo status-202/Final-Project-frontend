@@ -1,0 +1,88 @@
+.devComputerInfoContainer {
+  display: flex;
+  justify-content: center;
+}
+
+/* Dev Computer Card */
+
+.devComputerCard {
+  display: flex;
+  flex-direction: column;
+  text-align: left;
+  width: 40%;
+}
+
+.laptop__image {
+  border-radius: 50%;
+  width: 40%;
+}
+
+/* History Container */
+
+.historyCard {
+  width: 40%;
+}
+
+/* User History */
+
+.userHistoryCard {
+  text-align: left;
+}
+
+/* Device History */
+
+.deviceHistoryCard {
+  text-align: left;
+}
+
+/* Buttons */
+
+.devComputerCard__delete-button {
+  color: #4A4A4A;
+  border: 1px solid #4A4A4A;
+  padding: 8px 24px;
+  border-radius: 2px;
+  font-weight: lighter;
+  opacity: 0.6;
+  transition: opacity 0.3s ease;
+  margin: 0.5em;
+}
+
+.devComputerCard__delete-button:hover,
+.submit-button:hover{
+  opacity: 1;
+  color: black;
+}
+
+.devComputerCard__edit-button {
+  color: #4A4A4A;
+  border: 1px solid #4A4A4A;
+  padding: 8px 24px;
+  border-radius: 2px;
+  font-weight: lighter;
+  opacity: 0.6;
+  transition: opacity 0.3s ease;
+  margin: 0.5em;
+}
+
+.devComputerCard__edit-button:hover,
+.submit-button:hover{
+  opacity: 1;
+  color: black;
+}
+
+.update-button{
+  color: #4A4A4A;
+  border: 1px solid #4A4A4A;
+  padding: 8px 24px;
+  border-radius: 2px;
+  font-weight: lighter;
+  opacity: 0.6;
+  transition: opacity 0.3s ease;
+  margin: 0.5em;
+}
+
+.update-button:hover{
+  opacity: 1;
+  color: black;
+}

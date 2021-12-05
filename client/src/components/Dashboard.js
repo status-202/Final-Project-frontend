@@ -2,9 +2,9 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 
 import "../css/dashboard.css";
+import differenceInDays from '../utils/util'
 
 import { React, useEffect, useState } from "react";
-import Logout from "./Logout";
 import { Link } from "react-router-dom";
 import FormDevComputer from "./FormCreateDevComputer";
 
@@ -24,8 +24,8 @@ const Dashboard = () => {
   const parentCallback = (formInput) => setNewComputer(formInput);
 
   const handleSearch = (e) => {
-    const filteredComputers = laptops.filter(laptop => { 
-      return(
+    const filteredComputers = laptops.filter(laptop => {
+      return (
         laptop.computerID.toLowerCase().includes(e.target.value.toLowerCase())
       )
     })
@@ -65,6 +65,7 @@ const Dashboard = () => {
         <th> Information Link </th>
         <th> User </th>
         <th> Handout Date </th>
+        <th> Days since Handout </th>
         <th> Status </th>
         <th> Licence Link </th>
       </tr>
@@ -91,7 +92,8 @@ const Dashboard = () => {
           <td>{serialNO}</td>
           <td>{informationLink}</td>
           <td>{users[0]}</td>
-          <td>{handoutDate ? handoutDate.split("T")[0] : "Not handed out"}</td>
+          <td>{handoutDate ? handoutDate.split("T")[0] : "-"}</td>
+          <td className="center-item">{status === "Handed out" && handoutDate !== undefined && handoutDate !== null ? differenceInDays(handoutDate) : "0"} </td>
           <td>{status}</td>
           <td>
             <a href={`${licenseLink}`} target="blank">
@@ -105,33 +107,32 @@ const Dashboard = () => {
 
   return (
     <div className="dashboard__container">
-        <div className="dashboard__title"> 
-        <div className="dashboard__user"> 
-          <small> Signed in as {userAuth.returnedData.user.name}</small> 
+      <div className="dashboard__title">
+        <div className="dashboard__user">
+          {/* <small> Signed in as {userAuth.returnedData.user.name}</small> */}
           <div> <img src={userAuth.returnedData.user.imageUrl} alt="profile" className="profile-img" /> </div>
         </div>
-          <h1> Dashboard </h1> 
-          <h2> Welcome, {userAuth.returnedData.user.givenName}!</h2>
-        </div> 
-        <div className="dashboard__controls">
-          <div> 
-            <label> Filter: </label>
-            <input type="text" onChange={(e) => handleSearch(e)} /> 
-          </div>
-          <div> <button onClick={renderForm}> Add new </button> </div>
+        <h1> Dashboard </h1>
+        <h2> Welcome, {userAuth.returnedData.user.givenName}!</h2>
+      </div>
+      <div className="dashboard__controls">
+        <div>
+          <label> Search: </label>
+          <input type="text" onChange={(e) => handleSearch(e)} />
         </div>
-        {showForm && <FormDevComputer callback={parentCallback} />}
+        <div> <button onClick={renderForm} className="devComputerCard__delete-button"> Add new </button> </div>
+      </div>
+      {showForm && <FormDevComputer callback={parentCallback} />}
       <div className="dashboard__table">
         <table className="styled-table">
           <thead>
             {renderTableHeaders()}
           </thead>
-          <tbody>
+          <tbody className="dashboard__table-data">
             {renderTableData()}
           </tbody>
         </table>
       </div>
-      <Logout />
     </div>
   );
 };

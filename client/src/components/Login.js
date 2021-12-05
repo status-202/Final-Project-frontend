@@ -7,7 +7,7 @@ import { useAuth } from './UseAuth';
 
 const clientId = "223152336662-ggl8sh19jb01koh6v4ekv28qefg2lg6b.apps.googleusercontent.com";
 
-const Login = () => {
+const Login = ({ setLoggedIn }) => {
   const [userInfo, setUserInfo] = useState("");
   const navigate = useNavigate();
   const { login } = useAuth();
@@ -29,6 +29,7 @@ const Login = () => {
     const returnedData = await data.json();
     // console.log(returnedData);
     setUserInfo({ returnedData, loggedIn: true });
+    setLoggedIn(true);
     login().then(() => {
       navigate("/dashboard");
     });
