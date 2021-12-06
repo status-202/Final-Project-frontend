@@ -2,12 +2,12 @@
   font-size: 1em;
   display: flex;
   justify-content: space-between;
-  padding: 1.5em;
+  padding: .5em;
   position: sticky;
   top: 0;
   background-color: white;
   border-bottom: 1px solid black;
-  width: 97vw;
+  width: 99vw;
 }
 
 .navbar a {
@@ -15,8 +15,13 @@
   color: black;
 }
 
+.navbar__left {
+  margin-top: .5em;
+  margin-left: .5em;
+}
+
 .navbar__right {
- display: flex;
+ 
 }
 
 .navbar__right div {
