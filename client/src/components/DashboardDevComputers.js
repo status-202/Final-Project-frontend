@@ -11,14 +11,13 @@ const DashboardDevComputers = () => {
   const [laptops, setLaptops] = useState([]);
   const [showForm, setShowForm] = useState(false);
   const [filteredData, setFilteredData] = useState(laptops);
+  const [newComputer, setNewComputer] = useState();
 
   const [userAuth] = useState(() => {
     const localRef = localStorage.getItem("data");
     const data = JSON.parse(localRef);
     return data || "";
   });
-
-  const [newComputer, setNewComputer] = useState();
 
   const parentCallback = (formInput) => setNewComputer(formInput);
 
@@ -48,6 +47,9 @@ const DashboardDevComputers = () => {
 
   useEffect(() => {
     allLaptops();
+    // return () => {
+    //   setLaptops([])
+    // }  
   }, [newComputer]);
 
   const renderForm = (event) => {

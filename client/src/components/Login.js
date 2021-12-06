@@ -41,6 +41,9 @@ const Login = ({ setLoggedIn }) => {
 
   useEffect(() => {
     setLocalStorage();
+    return () => {
+      setUserInfo("")
+    }  
   }, [userInfo]);
 
   const onFailure = (res) => {

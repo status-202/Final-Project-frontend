@@ -5,6 +5,7 @@ import differenceInDays from '../utils/util'
 
 import "../css/devComputerInfo.css";
 
+
 const DevComputerInfo = ({ laptop, renderDevComputer }) => {
   const navigate = useNavigate();
   const [showForm, setShowForm] = useState(false);
@@ -18,19 +19,24 @@ const DevComputerInfo = ({ laptop, renderDevComputer }) => {
   });
 
   const handleDelete = async () => {
-    const bearer = "Bearer " + userAuth.returnedData.accessToken;
-    const response = await fetch(
-      `http://localhost:3001/dashboard/${laptop[0].computerID}`,
-      {
-        method: "DELETE",
-        headers: {
-          Authorization: bearer,
-        },
+    const confirmBox = window.confirm(
+      "Do you really want to delete this device?"
+    )
+    if (confirmBox === true) {
+      const bearer = "Bearer " + userAuth.returnedData.accessToken;
+      const response = await fetch(
+        `http://localhost:3001/dashboard/${laptop[0].computerID}`,
+        {
+          method: "DELETE",
+          headers: {
+            Authorization: bearer,
+          },
+        }
+      );
+      // console.log(response);
+      if (response.status === 200) {
+        navigate("/dashboard");
       }
-    );
-    // console.log(response);
-    if (response.status === 200) {
-      navigate("/dashboard");
     }
   };
 
