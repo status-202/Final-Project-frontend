@@ -81,14 +81,16 @@ const FormUpdateCoreCellphone = ({ cellphone, callback }) => {
   const renderTable = () => {
     return (
       <tr key={_id}>
-        <td>{cellphoneID}</td>
+        <td className="dev-com__info-link">{cellphoneID}</td>
         <td>{name}</td>
         <td>{imei}</td>
         <td>{type}</td>
         <td>{comments ? comments : "-"}</td>
         <td>
-          <button onClick={renderUpdateForm}>Edit</button>
-          <button onClick={handleDelete}>Delete</button>
+          <div className="dashboard-icons">
+            <div className="edit-icon"><i className="far fa-edit" onClick={renderUpdateForm}></i></div>
+            <div className="delete-icon"><i className="far fa-trash-alt" onClick={handleDelete}></i></div>
+          </div>
         </td>
       </tr>
     );
@@ -96,7 +98,7 @@ const FormUpdateCoreCellphone = ({ cellphone, callback }) => {
 
   const renderForm = () => {
     return (
-      <tr key={_id}>
+      <tr key={_id} className="table-row-update">
         <td>{cellphoneID}</td>
         <td>
           <input
@@ -135,8 +137,10 @@ const FormUpdateCoreCellphone = ({ cellphone, callback }) => {
           />
         </td>
         <td>
-          <button onClick={handleUpdate}>Update</button>
-          <button onClick={renderUpdateForm}>Cancel</button>
+          <div className="dashboard-icons"> 
+            <div className="update-green"><i class="far fa-check-circle" onClick={handleUpdate}></i></div>
+            <div className="cancel-icon"><i class="far fa-window-close" onClick={renderUpdateForm}></i></div>
+          </div>
         </td>
       </tr>
     );

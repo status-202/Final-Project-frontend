@@ -58,8 +58,9 @@ const FormUpdateDevComputer = ({ callback, currentComputer }) => {
         <h2>{currentComputer.computerID} (editing) </h2>
         {/* add divs around each label and input tags */}
         <div>
-          <label> Serial Number </label>
+          <label className="updateFormLabel"> Serial Number </label>
           <input
+            className="updateFormInput"
             type="text"
             name="serialNO"
             defaultValue={currentComputer.serialNO || updatedComputer.serialNO}
@@ -69,8 +70,9 @@ const FormUpdateDevComputer = ({ callback, currentComputer }) => {
           ></input>
         </div>
         <div>
-          <label> Information Link </label>
+          <label className="updateFormLabel"> Information Link </label>
           <input
+            className="updateFormInput"
             type="text"
             name="informationLink"
             defaultValue={
@@ -82,8 +84,9 @@ const FormUpdateDevComputer = ({ callback, currentComputer }) => {
           ></input>
         </div>
         <div>
-          <label> Status </label>
+          <label className="updateFormLabel"> Status </label>
           <select
+            className="updateFormInput"
             name="status"
             defaultValue={currentComputer.status || updatedComputer.status}
             onChange={(e) => handleComputerChange(e)}
@@ -98,8 +101,9 @@ const FormUpdateDevComputer = ({ callback, currentComputer }) => {
           </select>
         </div>
         <div>
-          <label> Users </label>
+          <label className="updateFormLabel"> Users </label>
           <input
+            className="updateFormInput"
             type="text"
             name="users"
             defaultValue={currentComputer.users[0] || user}
@@ -108,8 +112,9 @@ const FormUpdateDevComputer = ({ callback, currentComputer }) => {
           ></input>
         </div>
         <div>
-          <label> Handed Out </label>
+          <label className="updateFormLabel"> Handed Out </label>
           <input
+            className="updateFormInput"
             type="date"
             name="handoutDate"
             defaultValue={

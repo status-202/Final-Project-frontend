@@ -93,31 +93,35 @@ const FormUpdateCoreComputer = ({ computer, callback }) => {
 
   const renderTable = () => {
     return (
-      <tr key={_id}>
-        <td>{computerID}</td>
-        <td>{serialNO}</td>
-        <td>{type}</td>
-        <td>
-          <a href={`${licenseLink}`} target="blank">
-            Link
-          </a>
-        </td>
-        <td>{users[0]}</td>
-        <td>{comments ? comments : "-"}</td>
-        <td>{currentFileValueKey ? currentFileValueKey : "-"}</td>
-        <td>{handoutDate ? handoutDate.split("T")[0] : "-"}</td>
-        <td>{chargerNumber ? chargerNumber : "-"}</td>
-        <td>
-          <button onClick={renderUpdateForm}>Edit</button>
-          <button onClick={handleDelete}>Delete</button>
-        </td>
-      </tr>
+      <>
+        <tr key={_id}>
+          <td className="dev-com__info-link">{computerID}</td>
+          <td>{serialNO}</td>
+          <td>{type}</td>
+          <td>
+            <a href={`${licenseLink}`} target="blank">
+              Link
+            </a>
+          </td>
+          <td>{users[0]}</td>
+          <td>{comments ? comments : "-"}</td>
+          <td>{currentFileValueKey ? currentFileValueKey : "-"}</td>
+          <td>{handoutDate ? handoutDate.split("T")[0] : "-"}</td>
+          <td>{chargerNumber ? chargerNumber : "-"}</td>
+          <td>
+            <div className="dashboard-icons">
+              <div className="edit-icon"><i className="far fa-edit" onClick={renderUpdateForm}></i></div>
+              <div className="delete-icon"><i className="far fa-trash-alt" onClick={handleDelete}></i></div>
+            </div>
+          </td>
+        </tr>
+      </>
     );
   };
 
   const renderForm = () => {
     return (
-      <tr key={_id}>
+      <tr key={_id} className="table-row-update">
         <td>{computerID}</td>
         <td>
           <input
@@ -192,8 +196,10 @@ const FormUpdateCoreComputer = ({ computer, callback }) => {
           />
         </td>
         <td>
-          <button onClick={handleUpdate}>Update</button>
-          <button onClick={renderUpdateForm}>Cancel</button>
+          <div className="dashboard-icons"> 
+            <div className="update-green"><i class="far fa-check-circle" onClick={handleUpdate}></i></div>
+            <div className="cancel-icon"><i class="far fa-window-close" onClick={renderUpdateForm}></i></div>
+          </div>
         </td>
       </tr>
     );

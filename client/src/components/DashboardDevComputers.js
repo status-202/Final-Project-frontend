@@ -7,6 +7,11 @@ import { React, useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import FormDevComputer from "./FormCreateDevComputer";
 
+import DoughnutChart from './DoughnutChart'
+// import PieChart from './PieChart'
+import LineGraph from './LineGraph'
+import BarChart from './BarChart'
+
 const DashboardDevComputers = () => {
   const [laptops, setLaptops] = useState([]);
   const [showForm, setShowForm] = useState(false);
@@ -60,16 +65,18 @@ const DashboardDevComputers = () => {
 
   const renderTableHeaders = () => {
     return (
-      <tr>
-        <th> Computer ID </th>
-        <th> Serial NO </th>
-        <th> Information Link </th>
-        <th> User </th>
-        <th> Handout Date </th>
-        <th> Days since Handout </th>
-        <th> Status </th>
-        <th> Licence Link </th>
-      </tr>
+      <>
+        <tr>
+          <th> device ID </th>
+          <th> serial NO </th>
+          <th> information link </th>
+          <th> user </th>
+          <th> handout date </th>
+          <th> days since handout </th>
+          <th> status </th>
+          <th> licence link </th>
+        </tr>
+      </>
     );
   };
 
@@ -86,47 +93,59 @@ const DashboardDevComputers = () => {
         licenseLink,
       } = computer;
       return (
-        <tr key={_id}>
-          <td>
-            <Link to={`/dashboard/${computerID}`}> {computerID} </Link>
-          </td>
-          <td>{serialNO}</td>
-          <td>{informationLink}</td>
-          <td>{users[0]}</td>
-          <td>{handoutDate ? handoutDate.split("T")[0] : "-"}</td>
-          <td className="center-item">{status === "Handed out" && handoutDate !== undefined && handoutDate !== null ? differenceInDays(handoutDate) : "0"} </td>
-          <td>{status}</td>
-          <td>
-            <a href={`${licenseLink}`} target="blank">
-              Link
-            </a>
-          </td>
-        </tr>
+        <>
+          <tr key={_id}>
+            <td>
+              <Link className="dev-com__info-link" to={`/dashboard/${computerID}`}> {computerID} </Link>
+            </td>
+            <td>{serialNO}</td>
+            <td>{informationLink}</td>
+            <td>{users[0]}</td>
+            <td>{handoutDate ? handoutDate.split("T")[0] : "-"}</td>
+            <td className="center-item">{status === "Handed out" && handoutDate !== undefined && handoutDate !== null ? differenceInDays(handoutDate) : "0"} </td>
+            <td>{status}</td>
+            <td>
+              <a href={`${licenseLink}`} target="blank">
+                Link
+              </a>
+            </td>
+          </tr>
+        </>
       );
     });
   };
 
   return (
-  <div>
-    <div className="devComputerCard__controls">
-      <div>
-        <label> Search: </label>
-        <input type="text" onChange={(e) => handleSearch(e)} />
+    <div>
+      <div className="create-form-container">
+        {showForm && <FormDevComputer callback={parentCallback} />}
       </div>
-      <div> <button onClick={renderForm} className="devComputerCard__delete-button"> Add new </button> </div>
+      <div className="devComputerCard__controls">
+        <div className="devComputerCard__controls--width">
+          <div className="devComputerCard__controls-sub-title"><h2> Developer Laptops </h2></div>
+          <div className="devComputerCard__controls-search">
+            <label> Search: </label>
+            <input type="text" onChange={(e) => handleSearch(e)} />
+          </div>
+          <div className="devComputerCard__controls-button"> <button onClick={renderForm} className="devComputerCard__add-button"> Add new </button> </div>
+        </div>
+      </div>
+      <div className="dashboard__table">
+        <table className="styled-table">
+          <thead>
+            {renderTableHeaders()}
+          </thead>
+          <tbody className="dashboard__table-data">
+            {renderTableData()}
+          </tbody>
+        </table>
+      </div>
+        <div className="charts-container">
+          <div className="LineGraph"> <LineGraph laptops={filteredData} /> </div>
+          <div className="DoughnutChart"> <DoughnutChart laptops={filteredData} /> </div>
+          <div className="BarChart"> <BarChart laptops={filteredData} /> </div>
+        </div>
     </div>
-  { showForm && <FormDevComputer callback={parentCallback} /> }
-  <div className="dashboard__table">
-    <table className="styled-table">
-      <thead>
-        {renderTableHeaders()}
-      </thead>
-      <tbody className="dashboard__table-data">
-        {renderTableData()}
-      </tbody>
-    </table>
-  </div>
-  </div>
   );
 }
 

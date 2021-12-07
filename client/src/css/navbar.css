@@ -5,23 +5,29 @@
   padding: .5em;
   position: sticky;
   top: 0;
-  background-color: white;
-  border-bottom: 1px solid black;
-  width: 99vw;
+  background-color: #FF7A61;
+  width: 100vw;
+  z-index: 1;
 }
 
 .navbar a {
   text-decoration: none;
   color: black;
 }
-
-.navbar__left {
-  margin-top: .5em;
-  margin-left: .5em;
+.navbar__home:hover a,
+.navbar__dashboard:hover a {
+  cursor: pointer;
+  color: #f8c0b6;
 }
 
-.navbar__right {
- 
+.navbar__home {
+  width: 72px;
+  margin-bottom: 3px;
+}
+
+.navbar__left {
+  margin-top: 12px;
+  margin-left: .5em;
 }
 
 .navbar__right div {

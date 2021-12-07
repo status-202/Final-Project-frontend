@@ -55,15 +55,15 @@ const DevComputerInfo = ({ laptop, renderDevComputer }) => {
   return (
     <div className="devComputerInfoContainer">
       <div className='devComputerCard'>
-        <div><h2>{currentComputer.computerID}</h2></div>
-        <div><img className="laptop__image" src="https://images.unsplash.com/photo-1611186871348-b1ce696e52c9?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80" alt="laptop" /></div>
+        <div className="devComputerCard__computer-name"><h2>{currentComputer.computerID}</h2></div>
+        <div className="laptopImage"></div>
         <div><p> Serial#: {currentComputer.serialNO}</p></div>
         <div><p> Current User: {currentComputer.users[0]}</p></div>
         <div><p> Current Status: {currentComputer.status}</p></div>
         <div><p> Licence Link: <a className="devComputerCard__link" href={`${currentComputer.licenseLink}`} target="blank"> Link </a></p></div>
         <div><p> Handout Date: {currentComputer.handoutDate ? currentComputer.handoutDate.split('T')[0] : "-"}</p></div>
         <div><p> Days since Handout: {currentComputer.status === "Handed out" && currentComputer.handoutDate !== null ? differenceInDays(currentComputer.handoutDate) : "0"} </p></div>
-        <div className="devComputerCart">
+        <div className="devComputerCard__buttons">
           <button className="devComputerCard__edit-button" onClick={handleEdit}> Edit </button>
           <button className="devComputerCard__delete-button" onClick={handleDelete}> Delete </button>
         </div>
@@ -72,11 +72,54 @@ const DevComputerInfo = ({ laptop, renderDevComputer }) => {
       <div className="historyCard">
         <div className="userHistoryCard">
           <h3> User History </h3>
-          <p> Feature coming soon...</p>
+          <div className="userHistoryTable__container">
+            <table className="userHistoryTable__container__table">
+                <tr>
+                  <th>User</th>
+                  <th>Name</th>
+                  <th>Handed in date</th>
+                  <th>Agreement</th>
+                  <th>Comments</th>
+                </tr>
+                <tr>
+                  <td>alfreds.autterkiste</td>
+                  <td>Alfreds Futterkiste</td>
+                  <td>2020-07-11</td>
+                  <td>Link</td>
+                  <td>Scratch on the back</td>
+                </tr>
+                <tr>
+                  <td>kyle.danny</td>
+                  <td>Kyle Danny</td>
+                  <td>2021-08-19</td>
+                  <td>Link</td>
+                  <td>Space not working</td>
+                </tr>
+            </table>
+          </div>
         </div>
         <div className="deviceHistoryCard">
           <h3> Device History </h3>
-          <p> Feature coming soon...</p>
+          <div className="deviceHistoryTable__container">
+            <table className="deviceHistoryTable__container__table">
+                <tr>
+                  <th>Purchased</th>
+                  <th>Model</th>
+                  <th>Support</th>
+                  <th>Insurance</th>
+                  <th>Receipt</th>
+                  <th>Comments</th>
+                </tr>
+                <tr>
+                  <td>2019-07-11</td>
+                  <td>Macbok Pro</td>
+                  <td>-</td>
+                  <td>Link</td>
+                  <td>Link</td>
+                  <td>-</td>
+                </tr>
+            </table>
+          </div>
         </div>
       </div>
     </div>

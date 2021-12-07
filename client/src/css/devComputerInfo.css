@@ -1,6 +1,8 @@
 .devComputerInfoContainer {
   display: flex;
   justify-content: center;
+  padding: 0;
+  margin-left: 0;
 }
 
 /* Dev Computer Card */
@@ -8,8 +10,11 @@
 .devComputerCard {
   display: flex;
   flex-direction: column;
+  justify-content: center;
+  align-items: center;
   text-align: left;
   width: 40%;
+  margin-right: none;
 }
 
 .laptop__image {
@@ -20,21 +25,80 @@
 /* History Container */
 
 .historyCard {
-  width: 40%;
+  display: flex;
+  flex-direction: column;
+  width: 50%;
+  border-radius: 2px;
+  margin-top: 5em;
+  height: 70vh;
+  align-items: center;
+  gap: 5em;
 }
 
 /* User History */
 
 .userHistoryCard {
-  text-align: left;
+  margin-top: 5em;
+}
+
+.userHistoryCard h3 {
+  color: #ff7a61;
+  font-size: 1.5em;
+  font-weight: bold;
+  margin-bottom: 1em;
+}
+
+.deviceHistoryCard h3 {
+  color: #ff7a61;
+  font-size: 1.5em;
+  font-weight: bold;
+  margin-bottom: 1em;
+}
+
+.userHistoryTable__container__table{
+  width: 100%;
+  border: 1px solid white;
+  margin-top: 2em;
+}
+
+.userHistoryTable__container__table th{
+  border: 1px solid white;
+  padding: 5px;
+}
+
+.userHistoryTable__container__table td{
+  border: 1px solid white;
+  padding: 5px;
 }
 
 /* Device History */
 
 .deviceHistoryCard {
-  text-align: left;
+  margin-top:0;
 }
 
+/* .deviceHistoryTable__container{
+  width: 100%;
+  border: 1px solid red;
+  margin-top: 2em;
+} */
+
+.deviceHistoryTable__container__table{
+  border-radius: 2px;
+  width: 100%;
+  border: 1px solid white;
+  margin-top: 2em;
+}
+
+.deviceHistoryTable__container__table th{
+  border: 1px solid white;
+  padding: 5px;
+}
+
+.deviceHistoryTable__container__table td{
+  border: 1px solid white;
+  padding: 5px;
+}
 /* Buttons */
 
 .devComputerCard__delete-button {

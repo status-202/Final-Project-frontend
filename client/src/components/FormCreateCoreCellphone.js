@@ -1,4 +1,5 @@
 import { React, useState } from "react";
+import '../css/formCreateDevice.css';
 
 const FormCreateCoreCellphone = ({ setUpdatedCellphone }) => {
   const [newCellphone, setNewCellphone] = useState({
@@ -51,48 +52,52 @@ const FormCreateCoreCellphone = ({ setUpdatedCellphone }) => {
   };
 
   return (
-    <form onSubmit={(e) => handleSubmit(e)}>
-      <input
-        type="text"
-        name="cellphoneID"
-        value={newCellphone.cellphoneID || ""}
-        placeholder="Cellphone ID"
-        onChange={(e) => handleChange(e)}
-        required
-      ></input>
-      <input
-        type="text"
-        name="name"
-        value={newCellphone.name || ""}
-        placeholder="User name"
-        onChange={(e) => handleChange(e)}
-        required
-      ></input>
-      <input
-        type="text"
-        name="imei"
-        value={newCellphone.imei || ""}
-        placeholder="*imei*"
-        onChange={(e) => handleChange(e)}
-        required
-      ></input>
-      <input
-        type="text"
-        name="type"
-        value={newCellphone.type || ""}
-        placeholder="Type"
-        onChange={(e) => handleChange(e)}
-        required
-      ></input>
-      <input
-        type="text"
-        name="comments"
-        value={newCellphone.comments || ""}
-        placeholder="Comments"
-        onChange={(e) => handleChange(e)}
-      ></input>
-      <input type="submit" />
-    </form>
+    <div className="device-create-form">
+      <div className="device-create-form-width">
+        <form onSubmit={(e) => handleSubmit(e)}>
+          <input
+            type="text"
+            name="cellphoneID"
+            value={newCellphone.cellphoneID || ""}
+            placeholder="Cellphone ID"
+            onChange={(e) => handleChange(e)}
+            required
+          ></input>
+          <input
+            type="text"
+            name="name"
+            value={newCellphone.name || ""}
+            placeholder="User name"
+            onChange={(e) => handleChange(e)}
+            required
+          ></input>
+          <input
+            type="text"
+            name="imei"
+            value={newCellphone.imei || ""}
+            placeholder="*imei*"
+            onChange={(e) => handleChange(e)}
+            required
+          ></input>
+          <input
+            type="text"
+            name="type"
+            value={newCellphone.type || ""}
+            placeholder="Type"
+            onChange={(e) => handleChange(e)}
+            required
+          ></input>
+          <input
+            type="text"
+            name="comments"
+            value={newCellphone.comments || ""}
+            placeholder="Comments"
+            onChange={(e) => handleChange(e)}
+          ></input>
+          <button type="submit" className="create-submit-button"> submit</button>
+        </form>
+      </div>
+    </div>
   );
 };
 

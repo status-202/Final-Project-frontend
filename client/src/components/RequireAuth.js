@@ -2,7 +2,6 @@ import * as React from "react";
 import { useState } from "react";
 // import { useAuth } from "./UseAuth";
 // import { Navigate } from "react-router-dom";
-import Login from "./Login";
 
 export default function RequireAuth({ children }) {
   const [userAuth] = useState(() => {
@@ -13,5 +12,5 @@ export default function RequireAuth({ children }) {
 
   return userAuth.loggedIn === true
     ? children 
-    : <Login />
+    : <div className="login__error-msg">Please log in to have access to the dashboard!</div>
 }

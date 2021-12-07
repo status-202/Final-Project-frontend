@@ -43,18 +43,20 @@ const DashboardCoreComputers = () => {
 
   const renderTableHeaders = () => {
     return (
-      <tr>
-        <th> Computer ID </th>
-        <th> Serial NO </th>
-        <th> Type </th>
-        <th> Licence Link </th>
-        <th> Users </th>
-        <th> Comments </th>
-        <th> File Value Key </th>
-        <th> Handout Date </th>
-        <th> Charger Number </th>
-        <th></th>
-      </tr>
+      <>
+        <tr>
+          <th> device ID </th>
+          <th> serial NO </th>
+          <th> type </th>
+          <th> licence Link </th>
+          <th> users </th>
+          <th> comments </th>
+          <th> file value key </th>
+          <th> handout date </th>
+          <th> charger number </th>
+          <th></th>
+        </tr>
+      </>
     );
   };
 
@@ -66,19 +68,17 @@ const DashboardCoreComputers = () => {
 
   return (
     <div>
+      <div className="create-form-container">
+        {showCreateForm && (
+          <FormCreateCoreComputer setUpdatedComputer={setUpdatedComputer} />
+        )}
+      </div>
       <div className="devComputerCard__controls">
-        <div>
-          <button
-            onClick={renderCreateForm}
-            className="devComputerCard__delete-button"
-          >
-            Add new
-          </button>
+        <div className="devComputerCard__controls--width">
+          <div className="devComputerCard__controls-sub-title"><h2>  Core Laptops </h2></div>
+          <div className="devComputerCard__controls-button"> <button onClick={renderCreateForm} className="devComputerCard__add-button"> Add new </button> </div>
         </div>
       </div>
-      {showCreateForm && (
-        <FormCreateCoreComputer setUpdatedComputer={setUpdatedComputer} />
-      )}
       <div className="dashboard__table">
         <table className="styled-table">
           <thead>{renderTableHeaders()}</thead>

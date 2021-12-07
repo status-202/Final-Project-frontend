@@ -1,7 +1,8 @@
-import { React, useState } from "react";
+import { React, useState, useEffect } from "react";
 // import { Link } from "react-router-dom";
 
 import "../css/dashboard.css";
+import "../css/chartstyle.css";
 
 import DashboardDevComputers from "./DashboardDevComputers";
 import DashboardCoreComputers from "./DashboardCoreComputers";
@@ -17,6 +18,10 @@ const Dashboard = () => {
     const data = JSON.parse(localRef);
     return data || "";
   });
+
+// useEffect(() => {
+// useAuth()
+// }, [])
 
   const renderDevComputers = () => {
     setRenderDev(true);
@@ -37,25 +42,26 @@ const Dashboard = () => {
 
   return (
     <div className="dashboard__container">
-      <div className="dashboard__title">
-        <div className="dashboard__user">
-          {/* <small> Signed in as {userAuth.returnedData.user.name}</small> */}
-          <div>
-            <img
-              src={userAuth.returnedData.user.imageUrl}
-              alt="profile"
-              className="profile-img"
-            />
-          </div>
+      <div className="dashboard__user">
+        <div></div>
+        <div className="dashboard__title">
+          <h1> Dashboard </h1>
+          <h2> Welcome, {userAuth.returnedData.user.givenName}!</h2>
         </div>
-        <h1> Dashboard </h1>
-        <h2> Welcome, {userAuth.returnedData.user.givenName}!</h2>
+        <div>
+          <img
+            src={userAuth.returnedData.user.imageUrl}
+            alt="profile"
+            className="profile-img"
+          />
+        </div>
       </div>
-      <button onClick={renderDevComputers}>Dev Computers</button>
-      <button onClick={renderCoreComputers}>Core Computers</button>
-      <button onClick={renderCoreCellphones}>Core Cellphones </button>
-
-      <div>
+      <div className="dashboard__tabs-btns">
+        <button className="dashboard__dev-lap-btn" onClick={renderDevComputers}>Dev Laptops</button>
+        <button className="dashboard__core-lap-btn" onClick={renderCoreComputers}>Core Laptops</button>
+        <button className="dashboard__core-cell-btn" onClick={renderCoreCellphones}>Core Cellphones </button>
+      </div>
+      <div className="table-background">
         {renderDev ? (
           <DashboardDevComputers />
         ) : renderCore ? (

@@ -38,14 +38,16 @@ const DashboardCoreCellphones = () => {
 
   const renderTableHeaders = () => {
     return (
-      <tr>
-        <th> Cellphone ID </th>
-        <th> User </th>
-        <th> imei </th>
-        <th> Type </th>
-        <th> Comments </th>
-        <th></th>
-      </tr>
+      <>
+        <tr>
+          <th> device ID </th>
+          <th> user </th>
+          <th> imei </th>
+          <th> type </th>
+          <th> comments </th>
+          <th></th>
+        </tr>
+      </>
     );
   };
 
@@ -57,19 +59,17 @@ const DashboardCoreCellphones = () => {
 
   return (
     <div>
+      <div className="create-form-container">
+        {showCreateForm && (
+          <FormCreateCoreCellphone setUpdatedCellphone={setUpdatedCellphone} />
+        )}
+      </div>
       <div className="devComputerCard__controls">
-        <div>
-          <button
-            onClick={renderCreateForm}
-            className="devComputerCard__delete-button"
-          >
-            Add new
-          </button>
+        <div className="devComputerCard__controls--width">
+          <div className="devComputerCard__controls-sub-title"><h2 className="dashboard-sub-title"> Core Cellphones </h2> </div>
+          <div className="devComputerCard__controls-button"> <button onClick={renderCreateForm}className="devComputerCard__add-button"> Add new </button> </div>
         </div>
       </div>
-      {showCreateForm && (
-        <FormCreateCoreCellphone setUpdatedCellphone={setUpdatedCellphone} />
-      )}
       <div className="dashboard__table">
         <table className="styled-table">
           <thead>{renderTableHeaders()}</thead>

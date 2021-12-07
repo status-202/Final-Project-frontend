@@ -44,7 +44,7 @@ const DevComputer = () => {
   }, [params.id, updatedComputer]);
 
   return (
-    <div>
+    <div className="dev-computer-container">
       {!isLoading && (
         <DevComputerInfo laptop={laptop} renderDevComputer={renderUpdate} />
       )}
