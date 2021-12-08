@@ -7,12 +7,21 @@ const DashboardCoreComputers = () => {
   const [coreComputers, setCoreComputers] = useState([]);
   const [updatedComputer, setUpdatedComputer] = useState();
   const [showCreateForm, setShowCreateForm] = useState(false);
+  const [filteredData, setFilteredData] = useState(coreComputers);
 
   const [userAuth] = useState(() => {
     const localRef = localStorage.getItem("data");
     const data = JSON.parse(localRef);
     return data || "";
   });
+
+  const handleSearch = (e) => {
+    const search = e.target.value.toLowerCase();
+    const filteredData = coreComputers.filter((computer) => {
+      return computer.computerID.toLowerCase().includes(search);
+    });
+    setFilteredData(filteredData);
+  }
 
   const getCoreComputers = async () => {
     const bearer = "Bearer " + userAuth.returnedData.accessToken;
@@ -25,6 +34,7 @@ const DashboardCoreComputers = () => {
     });
     const parsedResponse = await response.json();
     setCoreComputers(parsedResponse);
+    setFilteredData(parsedResponse);
   };
 
   useEffect(() => {
@@ -61,7 +71,7 @@ const DashboardCoreComputers = () => {
   };
 
   const renderTableData = () => {
-    return coreComputers.map((computer) => {
+    return filteredData.map((computer) => {
       return <FormUpdateCoreComputer key={computer._id} computer={computer} callback={setUpdatedComputer} />;
     });
   };
@@ -76,6 +86,10 @@ const DashboardCoreComputers = () => {
       <div className="devComputerCard__controls">
         <div className="devComputerCard__controls--width">
           <div className="devComputerCard__controls-sub-title"><h2>  Core Laptops </h2></div>
+          <div className="devComputerCard__controls-search">
+            <label> Search: </label>
+            <input type="text" onChange={(e) => handleSearch(e)} />
+          </div>
           <div className="devComputerCard__controls-button"> <button onClick={renderCreateForm} className="devComputerCard__add-button"> Add new </button> </div>
         </div>
       </div>

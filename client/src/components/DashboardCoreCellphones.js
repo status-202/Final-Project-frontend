@@ -6,12 +6,21 @@ const DashboardCoreCellphones = () => {
   const [cellphones, setCellphones] = useState([]);
   const [updatedCellphone, setUpdatedCellphone] = useState();
   const [showCreateForm, setShowCreateForm] = useState(false);
+  const [filteredData, setFilteredData] = useState(cellphones)
 
   const [userAuth] = useState(() => {
     const localRef = localStorage.getItem("data");
     const data = JSON.parse(localRef);
     return data || "";
   });
+
+  const handleSearch = (e) => {
+    const search = e.target.value;
+    const filteredData = cellphones.filter(cellphone => {
+      return cellphone.cellphoneID.toLowerCase().includes(search.toLowerCase())
+    })
+    setFilteredData(filteredData);
+  }
 
   const getCoreCellphones = async () => {
     const bearer = "Bearer " + userAuth.returnedData.accessToken;
@@ -24,6 +33,7 @@ const DashboardCoreCellphones = () => {
     });
     const parsedResponse = await response.json();
     setCellphones(parsedResponse);
+    setFilteredData(parsedResponse);
   };
 
   useEffect(() => {
@@ -52,10 +62,11 @@ const DashboardCoreCellphones = () => {
   };
 
   const renderTableData = () => {
-    return cellphones.map((cellphone) => {
+    return filteredData.map((cellphone) => {
       return <FormUpdateCoreCellphone key={cellphone._id} cellphone={cellphone} callback={setUpdatedCellphone} />;
     });
   };
+  
 
   return (
     <div>
@@ -67,6 +78,10 @@ const DashboardCoreCellphones = () => {
       <div className="devComputerCard__controls">
         <div className="devComputerCard__controls--width">
           <div className="devComputerCard__controls-sub-title"><h2 className="dashboard-sub-title"> Core Cellphones </h2> </div>
+          <div className="devComputerCard__controls-search">
+            <label> Search: </label>
+            <input type="text" onChange={(e) => handleSearch(e)} />
+          </div>
           <div className="devComputerCard__controls-button"> <button onClick={renderCreateForm}className="devComputerCard__add-button"> Add new </button> </div>
         </div>
       </div>

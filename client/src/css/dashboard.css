@@ -37,8 +37,9 @@ body {
 /* User Info */
 .profile-img {
   border-radius: 50%;
-  width: 70%;
+  width: 50%;
   margin-top: 25px;
+  margin-right: 1em;
 }
 .dashboard__tabs-btns{
   margin: 10px;

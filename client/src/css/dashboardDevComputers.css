@@ -10,8 +10,10 @@
 }
 
 .devComputerCard__controls-sub-title {
-  align-self: flex-end;
+  align-self: flex-start;
   margin-bottom: 0.5em;
+  width: 225px;
+  text-align: left;
 }
 
 .devComputerCard__controls-search {
@@ -83,7 +85,7 @@
   display: flex;
   justify-content: center;
   text-align: left;
-  margin-bottom: 2em;
+  margin-bottom: .5em;
   /* overflow:scroll;
   height: 450px; */
 }
@@ -102,7 +104,7 @@ thead {
 
 tbody {
   display: block;
-  height: 325px;
+  height: 350px;
   overflow: auto;
 }
 
