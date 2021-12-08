@@ -6,7 +6,7 @@
 .devComputerCard__controls--width {
   display: flex;
   justify-content: space-between;
-  width: 90%; 
+  width: 90%;
 }
 
 .devComputerCard__controls-sub-title {
@@ -19,22 +19,41 @@
   margin-bottom: 0.6em;
 }
 
+.devComputerCard__controls-search label{
+  font-size: 1.2em;
+}
+
+.devComputerCard__controls-search input {
+  background-color: black;
+  border-top: none;
+  border-left: none;
+  border-right: none;
+  border-bottom: 1px solid white;
+  color: white;
+  font-size: 1.2em;
+}
+
+.devComputerCard__controls-search input:focus {
+  outline: none;
+}
+
+
 .devComputerCard__controls-button {
   margin-right: 0;
   margin-bottom: 0.5em;
 }
 
 .devComputerCard__add-button,
-.create-submit-button
-{ 
+.create-submit-button {
   background-color: rgba(104, 207, 207, 0.9);
-   border: 1px solid rgba(104, 207, 207, 0.9);
+  border: 1px solid rgba(104, 207, 207, 0.9);
   border-radius: 4px;
   /* box-shadow: rgba(0, 0, 0, .1) 0 2px 4px 0; */
   box-sizing: border-box;
   color: #fff;
   cursor: pointer;
-  font-family: "Akzidenz Grotesk BQ Medium", -apple-system, BlinkMacSystemFont, sans-serif;
+  font-family: "Akzidenz Grotesk BQ Medium", -apple-system, BlinkMacSystemFont,
+    sans-serif;
   font-size: 16px;
   font-weight: 400;
   /* outline: none;
@@ -48,15 +67,16 @@
   touch-action: manipulation;
   margin-left: 0;
 }
-.create-submit-button{
+.create-submit-button {
   padding: 4px 10px;
   font-size: 9px;
 }
 .devComputerCard__add-button:hover,
-.create-submit-button:hover{
-  box-shadow: rgba(0, 0, 0, .15) 0 3px 9px 0;
+.create-submit-button:hover {
+  box-shadow: rgba(0, 0, 0, 0.15) 0 3px 9px 0;
   transform: translateY(-2px);
 }
+
 /* Table */
 
 .dashboard__table {
@@ -68,7 +88,8 @@
   height: 450px; */
 }
 
-thead, tbody tr {
+thead,
+tbody tr {
   display: table;
   width: 100%;
   table-layout: fixed;
@@ -88,7 +109,7 @@ tbody {
 .styled-table {
   border-collapse: collapse;
   margin: 0 0;
-  font-size: 0.7em;
+  font-size: 0.9em;
   font-family: sans-serif;
   /* min-width: 400px; */
   width: 90%;
@@ -96,14 +117,14 @@ tbody {
 }
 
 .styled-table thead tr {
-  background-color: rgba(75,192,192,1);
+  background-color: rgba(75, 192, 192, 1);
   color: #ffffff;
   text-align: left;
 }
 
 .styled-table th,
 .styled-table td {
-    padding: 12px 15px;
+  padding: 12px 15px;
 }
 
 .styled-table tbody tr {
@@ -127,7 +148,6 @@ tbody {
   text-align: center;
 }
 
-
 /* in table */
 
 td a {
@@ -138,7 +158,7 @@ td a {
 
 td a:hover {
   text-decoration: none;
-  color: #4EBBF5;
+  color: rgb(172, 204, 204);
 }
 
 .dev-com__info-link {
@@ -155,20 +175,36 @@ td a:hover {
 
 .edit-icon i {
   font-size: 1.2em;
-  color: #4EBBF5;
+  color: rgb(172, 204, 204);
+}
+
+.edit-icon:hover {
+  cursor: pointer;
 }
 
 .delete-icon {
   font-size: 1.2em;
-  color: #FF7A61;
+  color: #ff7a61;
+}
+
+.delete-icon:hover {
+  cursor: pointer;
 }
 
 .update-green {
   font-size: 1.4em;
-  color:rgba(104, 207, 207, 0.9);
+  color: rgb(172, 204, 204);
+}
+
+.update-green:hover {
+  cursor: pointer;
 }
 
 .cancel-icon {
   font-size: 1.4em;
-  color: #FF7A61;
+  color: #ff7a61;
+}
+
+.cancel-icon:hover {
+  cursor: pointer;
 }

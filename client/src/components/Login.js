@@ -2,10 +2,11 @@
 import { React, useState, useEffect } from "react";
 import { GoogleLogin } from "react-google-login";
 import { refreshTokenSetup } from "../utils/refreshToken";
-import { useNavigate } from 'react-router-dom';
-import { useAuth } from './UseAuth';
+import { useNavigate } from "react-router-dom";
+import { useAuth } from "./UseAuth";
 
-const clientId = "223152336662-ggl8sh19jb01koh6v4ekv28qefg2lg6b.apps.googleusercontent.com";
+const clientId =
+  "223152336662-ggl8sh19jb01koh6v4ekv28qefg2lg6b.apps.googleusercontent.com";
 
 const Login = ({ setLoggedIn }) => {
   const [userInfo, setUserInfo] = useState("");
@@ -42,8 +43,8 @@ const Login = ({ setLoggedIn }) => {
   useEffect(() => {
     setLocalStorage();
     return () => {
-      setUserInfo("")
-    }  
+      setUserInfo("");
+    };
   }, [userInfo]);
 
   const onFailure = (res) => {
@@ -51,10 +52,14 @@ const Login = ({ setLoggedIn }) => {
   };
 
   return (
-    <div>
+    <div className="login__google-div">
       <GoogleLogin
         clientId={clientId}
+        render={renderProps => (
+          <button className="google-button-login" onClick={renderProps.onClick} disabled={renderProps.disabled}><i class="fab fa-google"></i> Login</button>
+        )}
         buttonText="Login"
+        className="login__google-btn"
         onSuccess={onSuccess}
         onFailure={onFailure}
         cookiePolicy={"single_host_origin"}

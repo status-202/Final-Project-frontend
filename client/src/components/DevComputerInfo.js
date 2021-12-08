@@ -52,22 +52,32 @@ const DevComputerInfo = ({ laptop, renderDevComputer }) => {
     renderDevComputer(formInput);
   };
 
-  return (
-    <div className="devComputerInfoContainer">
-      <div className='devComputerCard'>
+  const devComputerInfo = () => {
+    return (
+      <div className="devComputerCard-height">
         <div className="devComputerCard__computer-name"><h2>{currentComputer.computerID}</h2></div>
         <div className="laptopImage"></div>
-        <div><p> Serial#: {currentComputer.serialNO}</p></div>
-        <div><p> Current User: {currentComputer.users[0]}</p></div>
-        <div><p> Current Status: {currentComputer.status}</p></div>
-        <div><p> Licence Link: <a className="devComputerCard__link" href={`${currentComputer.licenseLink}`} target="blank"> Link </a></p></div>
-        <div><p> Handout Date: {currentComputer.handoutDate ? currentComputer.handoutDate.split('T')[0] : "-"}</p></div>
-        <div><p> Days since Handout: {currentComputer.status === "Handed out" && currentComputer.handoutDate !== null ? differenceInDays(currentComputer.handoutDate) : "0"} </p></div>
-        <div className="devComputerCard__buttons">
-          <button className="devComputerCard__edit-button" onClick={handleEdit}> Edit </button>
-          <button className="devComputerCard__delete-button" onClick={handleDelete}> Delete </button>
+        <div className="devComputerCardInfo">
+          <div><p> <b>Serial#:</b> {currentComputer.serialNO}</p></div>
+          <div><p> <b>Current User:</b> {currentComputer.users[0]}</p></div>
+          <div><p> <b>Current Status:</b> {currentComputer.status}</p></div>
+          <div><p> <b>Licence Link:</b> <a className="devComputerCard__link" href={`${currentComputer.licenseLink}`} target="blank"> Link </a></p></div>
+          <div><p> <b>Handout Date:</b> {currentComputer.handoutDate ? currentComputer.handoutDate.split('T')[0] : "-"}</p></div>
+          <div><p> <b>Days since Handout:</b> {currentComputer.status === "Handed out" && currentComputer.handoutDate !== null ? differenceInDays(currentComputer.handoutDate) : "0"} </p></div>
+          <div className="devComputerCard__buttons">
+            <div><button className="devComputerCard__edit-button" onClick={handleEdit}> Edit </button></div>
+            <div><button className="devComputerCard__delete-button" onClick={handleDelete}> Delete </button></div>
+          </div>
         </div>
-        {showForm && <FormUpdateDevComputer callback={renderUpdate} currentComputer={currentComputer} />}
+      </div>
+    )
+  }
+  //{showForm && <FormUpdateDevComputer callback={renderUpdate} currentComputer={currentComputer} />}
+
+  return (
+    <div className="devComputerInfoContainer">
+      <div className="devComputerCard">
+        {showForm ? <FormUpdateDevComputer cancelUpdate={handleEdit} callback={renderUpdate} currentComputer={currentComputer} cancelUpdate={handleEdit}/> : devComputerInfo()}
       </div>
       <div className="historyCard">
         <div className="userHistoryCard">

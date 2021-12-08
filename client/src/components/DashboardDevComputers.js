@@ -28,9 +28,18 @@ const DashboardDevComputers = () => {
 
   const handleSearch = (e) => {
     const filteredComputers = laptops.filter(laptop => {
-      return (
-        laptop.computerID.toLowerCase().includes(e.target.value.toLowerCase())
-      )
+      let matchForNumbers = e.target.value.match(/.*\d+/gi);
+      if (matchForNumbers) {
+        return (
+          laptop.computerID.toLowerCase().includes(e.target.value.toLowerCase())
+        )
+      } else { 
+        if(laptop.users[0] !== undefined) {
+          return (
+            laptop.users[0].toLowerCase().includes(e.target.value.toLowerCase())
+          )
+        }  
+      }
     })
     setFilteredData(filteredComputers);
   };

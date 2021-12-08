@@ -22,6 +22,9 @@ const Logout = ( { setLoggedIn } ) => {
     <div>
       <GoogleLogout
         clientId={clientId}
+        render={renderProps => (
+          <button className="google-button-login" onClick={renderProps.onClick} disabled={renderProps.disabled}><i class="fab fa-google"></i> Logout </button>
+        )}
         buttonText="Logout"
         onLogoutSuccess={onSuccess}
       ></GoogleLogout>
